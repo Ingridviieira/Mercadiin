@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -25,5 +26,8 @@ public class Prod {
 
     @Min(0) @Max(10)
     Integer status;
+
+    @Positive
+    Integer score;
     
 }
