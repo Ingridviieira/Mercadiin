@@ -45,7 +45,7 @@ public class ProdController {
         if (result.hasErrors())
         return "prod/form";
         service.save(prod);
-        redirect.addFlashAttribute("sucess", "Salvo com Sucesso!");
+        redirect.addFlashAttribute("sucess", "Produto cadastrado com Sucesso!");
         return "redirect:/prod";
     }
 }

@@ -10,7 +10,7 @@
     <title>Mercadiin</title>
 </head>
 
-<body class="blue lighten-2">
+<body class="grey lighten-2">
     <nav>
         <div class="nav-wrapper">
             <a href="#" class="brand-logo">Mercadiin</a>
@@ -31,9 +31,9 @@
                 <div class="card-content">
                     
                     <div class="input-field">
-                        <input type="text" th:field="*{nome}" th:classappend="${#fields.hasErrors('nome')} ? invalid">
+                        <input type="text" th:field="*{produto}" th:classappend="${#fields.hasErrors('produto')} ? invalid">
                         <label for="title">Produto</label>
-                        <span class="helper-text red-text" th:errors="*{nome}"></span>
+                        <span class="helper-text red-text" th:errors="*{produto}"></span>
                     </div>
 
                     <div class="input-field">
