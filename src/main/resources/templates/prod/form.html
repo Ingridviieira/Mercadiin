@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Mercadiin</title>
+</head>
+
+<body class="blue lighten-2">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Mercadiin</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="active"><a href="/prod"></a>Pendentes</li>
+                <li><a href="#">Concluídas</a></li>
+                <li><a href="#">Usuários</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <h2>Cadastrar Produto</h2>
+
+        <div class="card">
+            <form th:action="${'/prod'}" method="post" th:object="${prod}">
+                <div class="card-content">
+                    
+                    <div class="input-field">
+                        <input type="text" th:field="*{nome}" th:classappend="${#fields.hasErrors('nome')} ? invalid">
+                        <label for="title">Produto</label>
+                        <span class="helper-text red-text" th:errors="*{nome}"></span>
+                    </div>
+
+                    <div class="input-field">
+                        <textarea class="materialize-textarea" th:field="*{descricao}" th:classappend="${#fields.hasErrors('descricao')} ? invalid"></textarea>
+                        <label for="descricao">Descrição</label>
+                        <span class="helper-text red-text" th:errors="*{descricao}"></span>
+                    </div>
+
+                    <label for="score">Pontos</label>
+                    <p class="range-field">
+                        <input type="range"  min="1" max="100" th:field="*{score}" />
+                    </p>
+                    <span class="helper-text red-text" th:errors="*{score}"></span>
+
+                </div>
+                <div class="card-action right-align">
+                    <a href="/prod">Cancelar</a>
+                    <button class="btn">Cadastrar</button>
+                </div>
+                
+            </form>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

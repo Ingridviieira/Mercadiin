@@ -21,5 +21,9 @@ public class ProdService {
         repository.deleteById(id);
         return true;
     }
+
+    public void save(Prod prod){
+        repository.save(prod);
+    }
     
 }
