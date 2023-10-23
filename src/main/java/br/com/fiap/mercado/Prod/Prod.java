@@ -21,7 +21,7 @@ public class Prod {
     @NotBlank
     String produto;
 
-    @Size(min =15)
+    @Size(min =5, message = "{prod.descricao.size}")
     String descricao;
 
     @Min(0) @Max(10)

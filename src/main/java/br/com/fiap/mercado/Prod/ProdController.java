@@ -1,6 +1,10 @@
 package br.com.fiap.mercado.Prod;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,8 +23,13 @@ public class ProdController {
     @Autowired
     ProdService service;
 
+    @Autowired
+    MessageSource message;
+
     @GetMapping
-    public String index(Model model){
+    public String index(Model model, @AuthenticationPrincipal OAuth2User user){
+        model.addAttribute("username", user.getAttribute("name"));
+        model.addAttribute("avatar_url", user.getAttribute("avatar_url"));
         model.addAttribute("prods", service.findAll());
         return "prod/index";
     }
@@ -28,9 +37,9 @@ public class ProdController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirect){
         if(service.delete(id)){
-            redirect.addFlashAttribute("success", "Produto apagada com sucesso");
+            redirect.addFlashAttribute("success", getMessage("prod.delete.success") );
         }else{
-            redirect.addFlashAttribute("error", "Produto não foi encontrado");
+            redirect.addFlashAttribute("error", getMessage("prod.notfound"));
         }
         return "redirect:/prod";
     }
@@ -45,7 +54,11 @@ public class ProdController {
         if (result.hasErrors())
         return "prod/form";
         service.save(prod);
-        redirect.addFlashAttribute("sucess", "Produto cadastrado com Sucesso!");
+        redirect.addFlashAttribute("sucess", getMessage("prod.create.success"));
         return "redirect:/prod";
+    }
+
+    private String getMessage(String code){
+        return message.getMessage(code, null, LocaleContextHolder.getLocale());
     }
 }
