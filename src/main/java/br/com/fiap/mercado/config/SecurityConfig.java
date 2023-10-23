@@ -2,7 +2,6 @@ package br.com.fiap.mercado.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -12,8 +11,9 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http
-            .formLogin(Customizer.withDefaults())
-            .oauth2Login(Customizer.withDefaults())
-            .build();
+        .authorizeHttpRequests( auth -> auth.anyRequest().authenticated() )
+        .oauth2Login(form -> form.loginPage("/login").defaultSuccessUrl("/prod").permitAll() )
+        .logout ( logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login"))
+        .build();
     }
 }
