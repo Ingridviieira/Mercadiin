@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Mercadin</title>
+<head th:replace="~{_template :: head('Sair')}">
 </head>
 
 <body class="grey lighten-2">
     <main class="container center">
-        <h1>Mercadiin</h1>
-        <p>App para fazer troca de pontos por produtos</p>
-        <a href="/oauth2/authorization/github" class="btn">
-            <i class="material-icons left">check</i>
-            entrar com github
-        </a>
+        <h4>Deseja sair do app mercadiin?</h4>
+
+        <form th:action="${'/logout'}" method="post">
+            <a href="/prod" class="btn grey">
+                <i class="material-icons left">chevron_left</i>
+                Cancelar
+            </a>
+
+            <button class="btn">Yes</button>
+
+        </form>
     </main>
     
 </body>

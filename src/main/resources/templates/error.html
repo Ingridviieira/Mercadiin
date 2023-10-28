@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head th:replace="~{_template :: head('Sair')}"></head>
+
+
+<body class="grey lighten-2">
+
+    <main class="container center">
+
+        <h4>ops, um erro aconteceu.</h4>
+
+        <p th:text="${message}"></p>
+
+        <a href="/prod" class="btn">
+            <i class="material-icons left">chevron_left</i>
+            voltar para a home
+        </a>
+
+    </main>
+
+</body>
+
+</html>

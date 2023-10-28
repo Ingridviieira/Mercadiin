@@ -1,9 +1,11 @@
 package br.com.fiap.mercado.Prod;
 
+import br.com.fiap.mercado.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -29,5 +31,8 @@ public class Prod {
 
     @Positive
     Integer score;
+
+    @ManyToOne
+    User user;
     
 }
