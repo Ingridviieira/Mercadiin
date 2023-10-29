@@ -18,10 +18,10 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http
-        .authorizeHttpRequests( auth -> auth.anyRequest().authenticated() )
-        .oauth2Login(form -> form.loginPage("/login").defaultSuccessUrl("/prod").permitAll() )
-        .logout ( logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login"))
-        .addFilterBefore(new LoginFilter(repository), OAuth2LoginAuthenticationFilter.class)
-        .build();
+            .authorizeHttpRequests( auth -> auth.anyRequest().authenticated() )
+            .oauth2Login(form -> form.loginPage("/login").defaultSuccessUrl("/prod").permitAll() )
+            .logout ( logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login"))
+            .addFilterBefore(new LoginFilter(repository), OAuth2LoginAuthenticationFilter.class)
+            .build();
     }
 }
